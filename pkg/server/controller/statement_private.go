@@ -32,7 +32,6 @@ func (statementController statementControllerForPrivate) GetStatements(c *gin.Co
 	return
 }
 
-
 func (statementController statementControllerForPrivate) CreateStatement(c *gin.Context) {
 	var statementRequest request.StatementRequest
 	if err := c.Bind(&statementRequest); err != nil {
@@ -44,7 +43,6 @@ func (statementController statementControllerForPrivate) CreateStatement(c *gin.
 	c.JSON(http.StatusOK, res)
 	return
 }
-
 
 func (statementController statementControllerForPrivate) UpdateStatement(c *gin.Context) {
 	var statementRequest request.StatementRequest
@@ -58,20 +56,18 @@ func (statementController statementControllerForPrivate) UpdateStatement(c *gin.
 	return
 }
 
-
 func (statementController statementControllerForPrivate) DeleteStatement(c *gin.Context) {
 	var statementRequest request.StatementRequest
 	if err := c.Bind(&statementRequest); err != nil {
 		c.JSON(http.StatusBadRequest, &response.StatementResponse{Code: "SERVER_CONTROLLER_DELETE__FOR__001", Message: err.Error(), Statements: []response.Statement{}})
 		return
 	}
-	var uuid string
-	res := statementController.StatementRepository.DeleteStatement(uuid)
+	var statementModel model.Statements
+	res := statementController.StatementRepository.DeleteStatement(statementModel)
 	c.JSON(http.StatusOK, res)
 	return
 }
 
-
 func NewStatementControllerForPrivate(statementRepository repository.StatementRepository) StatementControllerForPrivate {
-	return &statementControllerForPrivate{ StatementRepository: statementRepository}
+	return &statementControllerForPrivate{StatementRepository: statementRepository}
 }

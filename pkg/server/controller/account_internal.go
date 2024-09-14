@@ -27,11 +27,10 @@ func (accountController accountControllerForInternal) GetAccounts(c *gin.Context
 		c.JSON(http.StatusBadRequest, &response.AccountResponse{Code: "SERVER_CONTROLLER_GET__FOR__001", Message: err.Error(), Accounts: []response.Account{}})
 		return
 	}
-	res := accountController.AccountRepository.GetAccounts()
-	c.JSON(http.StatusOK, res)
+	accountController.AccountRepository.GetAccounts()
+	c.JSON(http.StatusOK, &response.AccountResponse{Code: "SERVER_CONTROLLER_GET__FOR__002", Message: "Account retrieved", Accounts: []response.Account{}})
 	return
 }
-
 
 func (accountController accountControllerForInternal) CreateAccount(c *gin.Context) {
 	var accountRequest request.AccountRequest
@@ -40,11 +39,10 @@ func (accountController accountControllerForInternal) CreateAccount(c *gin.Conte
 		return
 	}
 	var accountModel model.Accounts
-	res := accountController.AccountRepository.CreateAccount(accountModel)
-	c.JSON(http.StatusOK, res)
+	accountController.AccountRepository.CreateAccount(accountModel)
+	c.JSON(http.StatusOK, &response.AccountResponse{})
 	return
 }
-
 
 func (accountController accountControllerForInternal) UpdateAccount(c *gin.Context) {
 	var accountRequest request.AccountRequest
@@ -53,11 +51,10 @@ func (accountController accountControllerForInternal) UpdateAccount(c *gin.Conte
 		return
 	}
 	var accountModel model.Accounts
-	res := accountController.AccountRepository.UpdateAccount(accountModel)
-	c.JSON(http.StatusOK, res)
+	accountController.AccountRepository.UpdateAccount(accountModel)
+	c.JSON(http.StatusOK, &response.AccountResponse{Code: "SERVER_CONTROLLER_UPDATE__FOR__002", Message: "Account updated", Accounts: []response.Account{}})
 	return
 }
-
 
 func (accountController accountControllerForInternal) DeleteAccount(c *gin.Context) {
 	var accountRequest request.AccountRequest
@@ -65,13 +62,11 @@ func (accountController accountControllerForInternal) DeleteAccount(c *gin.Conte
 		c.JSON(http.StatusBadRequest, &response.AccountResponse{Code: "SERVER_CONTROLLER_DELETE__FOR__001", Message: err.Error(), Accounts: []response.Account{}})
 		return
 	}
-	var uuid string
-	res := accountController.AccountRepository.DeleteAccount(uuid)
-	c.JSON(http.StatusOK, res)
+	accountController.AccountRepository.DeleteAccount(model.Accounts{})
+	c.JSON(http.StatusOK, &response.AccountResponse{Code: "SERVER_CONTROLLER_DELETE__FOR__002", Message: "Account deleted", Accounts: []response.Account{}})
 	return
 }
 
-
 func NewAccountControllerForInternal(accountRepository repository.AccountRepository) AccountControllerForInternal {
-	return &accountControllerForInternal{ AccountRepository: accountRepository}
+	return &accountControllerForInternal{AccountRepository: accountRepository}
 }

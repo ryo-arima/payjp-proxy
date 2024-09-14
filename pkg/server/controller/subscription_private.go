@@ -32,7 +32,6 @@ func (subscriptionController subscriptionControllerForPrivate) GetSubscriptions(
 	return
 }
 
-
 func (subscriptionController subscriptionControllerForPrivate) CreateSubscription(c *gin.Context) {
 	var subscriptionRequest request.SubscriptionRequest
 	if err := c.Bind(&subscriptionRequest); err != nil {
@@ -44,7 +43,6 @@ func (subscriptionController subscriptionControllerForPrivate) CreateSubscriptio
 	c.JSON(http.StatusOK, res)
 	return
 }
-
 
 func (subscriptionController subscriptionControllerForPrivate) UpdateSubscription(c *gin.Context) {
 	var subscriptionRequest request.SubscriptionRequest
@@ -58,20 +56,18 @@ func (subscriptionController subscriptionControllerForPrivate) UpdateSubscriptio
 	return
 }
 
-
 func (subscriptionController subscriptionControllerForPrivate) DeleteSubscription(c *gin.Context) {
 	var subscriptionRequest request.SubscriptionRequest
 	if err := c.Bind(&subscriptionRequest); err != nil {
 		c.JSON(http.StatusBadRequest, &response.SubscriptionResponse{Code: "SERVER_CONTROLLER_DELETE__FOR__001", Message: err.Error(), Subscriptions: []response.Subscription{}})
 		return
 	}
-	var uuid string
-	res := subscriptionController.SubscriptionRepository.DeleteSubscription(uuid)
+	var subscriptionModel model.Subscriptions
+	res := subscriptionController.SubscriptionRepository.DeleteSubscription(subscriptionModel)
 	c.JSON(http.StatusOK, res)
 	return
 }
 
-
 func NewSubscriptionControllerForPrivate(subscriptionRepository repository.SubscriptionRepository) SubscriptionControllerForPrivate {
-	return &subscriptionControllerForPrivate{ SubscriptionRepository: subscriptionRepository}
+	return &subscriptionControllerForPrivate{SubscriptionRepository: subscriptionRepository}
 }

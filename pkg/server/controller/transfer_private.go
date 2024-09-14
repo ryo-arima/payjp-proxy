@@ -32,7 +32,6 @@ func (transferController transferControllerForPrivate) GetTransfers(c *gin.Conte
 	return
 }
 
-
 func (transferController transferControllerForPrivate) CreateTransfer(c *gin.Context) {
 	var transferRequest request.TransferRequest
 	if err := c.Bind(&transferRequest); err != nil {
@@ -44,7 +43,6 @@ func (transferController transferControllerForPrivate) CreateTransfer(c *gin.Con
 	c.JSON(http.StatusOK, res)
 	return
 }
-
 
 func (transferController transferControllerForPrivate) UpdateTransfer(c *gin.Context) {
 	var transferRequest request.TransferRequest
@@ -58,20 +56,18 @@ func (transferController transferControllerForPrivate) UpdateTransfer(c *gin.Con
 	return
 }
 
-
 func (transferController transferControllerForPrivate) DeleteTransfer(c *gin.Context) {
 	var transferRequest request.TransferRequest
 	if err := c.Bind(&transferRequest); err != nil {
 		c.JSON(http.StatusBadRequest, &response.TransferResponse{Code: "SERVER_CONTROLLER_DELETE__FOR__001", Message: err.Error(), Transfers: []response.Transfer{}})
 		return
 	}
-	var uuid string
-	res := transferController.TransferRepository.DeleteTransfer(uuid)
+	var transferModel model.Transfers
+	res := transferController.TransferRepository.DeleteTransfer(transferModel)
 	c.JSON(http.StatusOK, res)
 	return
 }
 
-
 func NewTransferControllerForPrivate(transferRepository repository.TransferRepository) TransferControllerForPrivate {
-	return &transferControllerForPrivate{ TransferRepository: transferRepository}
+	return &transferControllerForPrivate{TransferRepository: transferRepository}
 }

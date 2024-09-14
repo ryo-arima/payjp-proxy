@@ -32,7 +32,6 @@ func (statementController statementControllerForInternal) GetStatements(c *gin.C
 	return
 }
 
-
 func (statementController statementControllerForInternal) CreateStatement(c *gin.Context) {
 	var statementRequest request.StatementRequest
 	if err := c.Bind(&statementRequest); err != nil {
@@ -44,7 +43,6 @@ func (statementController statementControllerForInternal) CreateStatement(c *gin
 	c.JSON(http.StatusOK, res)
 	return
 }
-
 
 func (statementController statementControllerForInternal) UpdateStatement(c *gin.Context) {
 	var statementRequest request.StatementRequest
@@ -58,20 +56,18 @@ func (statementController statementControllerForInternal) UpdateStatement(c *gin
 	return
 }
 
-
 func (statementController statementControllerForInternal) DeleteStatement(c *gin.Context) {
 	var statementRequest request.StatementRequest
 	if err := c.Bind(&statementRequest); err != nil {
 		c.JSON(http.StatusBadRequest, &response.StatementResponse{Code: "SERVER_CONTROLLER_DELETE__FOR__001", Message: err.Error(), Statements: []response.Statement{}})
 		return
 	}
-	var uuid string
-	res := statementController.StatementRepository.DeleteStatement(uuid)
+	var statementModel model.Statements
+	res := statementController.StatementRepository.DeleteStatement(statementModel)
 	c.JSON(http.StatusOK, res)
 	return
 }
 
-
 func NewStatementControllerForInternal(statementRepository repository.StatementRepository) StatementControllerForInternal {
-	return &statementControllerForInternal{ StatementRepository: statementRepository}
+	return &statementControllerForInternal{StatementRepository: statementRepository}
 }

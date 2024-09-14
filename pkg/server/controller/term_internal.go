@@ -32,7 +32,6 @@ func (termController termControllerForInternal) GetTerms(c *gin.Context) {
 	return
 }
 
-
 func (termController termControllerForInternal) CreateTerm(c *gin.Context) {
 	var termRequest request.TermRequest
 	if err := c.Bind(&termRequest); err != nil {
@@ -44,7 +43,6 @@ func (termController termControllerForInternal) CreateTerm(c *gin.Context) {
 	c.JSON(http.StatusOK, res)
 	return
 }
-
 
 func (termController termControllerForInternal) UpdateTerm(c *gin.Context) {
 	var termRequest request.TermRequest
@@ -58,20 +56,18 @@ func (termController termControllerForInternal) UpdateTerm(c *gin.Context) {
 	return
 }
 
-
 func (termController termControllerForInternal) DeleteTerm(c *gin.Context) {
 	var termRequest request.TermRequest
 	if err := c.Bind(&termRequest); err != nil {
 		c.JSON(http.StatusBadRequest, &response.TermResponse{Code: "SERVER_CONTROLLER_DELETE__FOR__001", Message: err.Error(), Terms: []response.Term{}})
 		return
 	}
-	var uuid string
-	res := termController.TermRepository.DeleteTerm(uuid)
+	var termModel model.Terms
+	res := termController.TermRepository.DeleteTerm(termModel)
 	c.JSON(http.StatusOK, res)
 	return
 }
 
-
 func NewTermControllerForInternal(termRepository repository.TermRepository) TermControllerForInternal {
-	return &termControllerForInternal{ TermRepository: termRepository}
+	return &termControllerForInternal{TermRepository: termRepository}
 }

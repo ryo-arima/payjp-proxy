@@ -32,7 +32,6 @@ func (planController planControllerForInternal) GetPlans(c *gin.Context) {
 	return
 }
 
-
 func (planController planControllerForInternal) CreatePlan(c *gin.Context) {
 	var planRequest request.PlanRequest
 	if err := c.Bind(&planRequest); err != nil {
@@ -44,7 +43,6 @@ func (planController planControllerForInternal) CreatePlan(c *gin.Context) {
 	c.JSON(http.StatusOK, res)
 	return
 }
-
 
 func (planController planControllerForInternal) UpdatePlan(c *gin.Context) {
 	var planRequest request.PlanRequest
@@ -58,20 +56,18 @@ func (planController planControllerForInternal) UpdatePlan(c *gin.Context) {
 	return
 }
 
-
 func (planController planControllerForInternal) DeletePlan(c *gin.Context) {
 	var planRequest request.PlanRequest
 	if err := c.Bind(&planRequest); err != nil {
 		c.JSON(http.StatusBadRequest, &response.PlanResponse{Code: "SERVER_CONTROLLER_DELETE__FOR__001", Message: err.Error(), Plans: []response.Plan{}})
 		return
 	}
-	var uuid string
-	res := planController.PlanRepository.DeletePlan(uuid)
+	var planModel model.Plans
+	res := planController.PlanRepository.DeletePlan(planModel)
 	c.JSON(http.StatusOK, res)
 	return
 }
 
-
 func NewPlanControllerForInternal(planRepository repository.PlanRepository) PlanControllerForInternal {
-	return &planControllerForInternal{ PlanRepository: planRepository}
+	return &planControllerForInternal{PlanRepository: planRepository}
 }

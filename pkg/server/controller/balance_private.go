@@ -27,11 +27,10 @@ func (balanceController balanceControllerForPrivate) GetBalances(c *gin.Context)
 		c.JSON(http.StatusBadRequest, &response.BalanceResponse{Code: "SERVER_CONTROLLER_GET__FOR__001", Message: err.Error(), Balances: []response.Balance{}})
 		return
 	}
-	res := balanceController.BalanceRepository.GetBalances()
-	c.JSON(http.StatusOK, res)
+	balanceController.BalanceRepository.GetBalances()
+	c.JSON(http.StatusOK, &response.BalanceResponse{Code: "SERVER_CONTROLLER_GET__FOR__001", Message: "Success", Balances: []response.Balance{}})
 	return
 }
-
 
 func (balanceController balanceControllerForPrivate) CreateBalance(c *gin.Context) {
 	var balanceRequest request.BalanceRequest
@@ -40,11 +39,10 @@ func (balanceController balanceControllerForPrivate) CreateBalance(c *gin.Contex
 		return
 	}
 	var balanceModel model.Balances
-	res := balanceController.BalanceRepository.CreateBalance(balanceModel)
-	c.JSON(http.StatusOK, res)
+	balanceController.BalanceRepository.CreateBalance(balanceModel)
+	c.JSON(http.StatusOK, &response.BalanceResponse{Code: "SERVER_CONTROLLER_CREATE__FOR__001", Message: "Success", Balances: []response.Balance{}})
 	return
 }
-
 
 func (balanceController balanceControllerForPrivate) UpdateBalance(c *gin.Context) {
 	var balanceRequest request.BalanceRequest
@@ -53,11 +51,10 @@ func (balanceController balanceControllerForPrivate) UpdateBalance(c *gin.Contex
 		return
 	}
 	var balanceModel model.Balances
-	res := balanceController.BalanceRepository.UpdateBalance(balanceModel)
-	c.JSON(http.StatusOK, res)
+	balanceController.BalanceRepository.UpdateBalance(balanceModel)
+	c.JSON(http.StatusOK, &response.BalanceResponse{Code: "SERVER_CONTROLLER_UPDATE__FOR__001", Message: "Success", Balances: []response.Balance{}})
 	return
 }
-
 
 func (balanceController balanceControllerForPrivate) DeleteBalance(c *gin.Context) {
 	var balanceRequest request.BalanceRequest
@@ -65,13 +62,11 @@ func (balanceController balanceControllerForPrivate) DeleteBalance(c *gin.Contex
 		c.JSON(http.StatusBadRequest, &response.BalanceResponse{Code: "SERVER_CONTROLLER_DELETE__FOR__001", Message: err.Error(), Balances: []response.Balance{}})
 		return
 	}
-	var uuid string
-	res := balanceController.BalanceRepository.DeleteBalance(uuid)
-	c.JSON(http.StatusOK, res)
+	balanceController.BalanceRepository.DeleteBalance(model.Balances{})
+	c.JSON(http.StatusOK, &response.BalanceResponse{Code: "SERVER_CONTROLLER_DELETE__FOR__001", Message: "Success", Balances: []response.Balance{}})
 	return
 }
 
-
 func NewBalanceControllerForPrivate(balanceRepository repository.BalanceRepository) BalanceControllerForPrivate {
-	return &balanceControllerForPrivate{ BalanceRepository: balanceRepository}
+	return &balanceControllerForPrivate{BalanceRepository: balanceRepository}
 }

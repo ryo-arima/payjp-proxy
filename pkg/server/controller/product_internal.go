@@ -32,7 +32,6 @@ func (productController productControllerForInternal) GetProducts(c *gin.Context
 	return
 }
 
-
 func (productController productControllerForInternal) CreateProduct(c *gin.Context) {
 	var productRequest request.ProductRequest
 	if err := c.Bind(&productRequest); err != nil {
@@ -44,7 +43,6 @@ func (productController productControllerForInternal) CreateProduct(c *gin.Conte
 	c.JSON(http.StatusOK, res)
 	return
 }
-
 
 func (productController productControllerForInternal) UpdateProduct(c *gin.Context) {
 	var productRequest request.ProductRequest
@@ -58,20 +56,18 @@ func (productController productControllerForInternal) UpdateProduct(c *gin.Conte
 	return
 }
 
-
 func (productController productControllerForInternal) DeleteProduct(c *gin.Context) {
 	var productRequest request.ProductRequest
 	if err := c.Bind(&productRequest); err != nil {
 		c.JSON(http.StatusBadRequest, &response.ProductResponse{Code: "SERVER_CONTROLLER_DELETE__FOR__001", Message: err.Error(), Products: []response.Product{}})
 		return
 	}
-	var uuid string
-	res := productController.ProductRepository.DeleteProduct(uuid)
+	var productModel model.Products
+	res := productController.ProductRepository.DeleteProduct(productModel)
 	c.JSON(http.StatusOK, res)
 	return
 }
 
-
 func NewProductControllerForInternal(productRepository repository.ProductRepository) ProductControllerForInternal {
-	return &productControllerForInternal{ ProductRepository: productRepository}
+	return &productControllerForInternal{ProductRepository: productRepository}
 }

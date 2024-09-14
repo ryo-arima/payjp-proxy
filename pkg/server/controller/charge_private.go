@@ -27,11 +27,10 @@ func (chargeController chargeControllerForPrivate) GetCharges(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, &response.ChargeResponse{Code: "SERVER_CONTROLLER_GET__FOR__001", Message: err.Error(), Charges: []response.Charge{}})
 		return
 	}
-	res := chargeController.ChargeRepository.GetCharges()
-	c.JSON(http.StatusOK, res)
+	chargeController.ChargeRepository.GetCharges()
+	c.JSON(http.StatusOK, &response.ChargeResponse{Code: "SERVER_CONTROLLER_GET__FOR__002", Message: "Charge retrieved", Charges: []response.Charge{}})
 	return
 }
-
 
 func (chargeController chargeControllerForPrivate) CreateCharge(c *gin.Context) {
 	var chargeRequest request.ChargeRequest
@@ -40,11 +39,10 @@ func (chargeController chargeControllerForPrivate) CreateCharge(c *gin.Context) 
 		return
 	}
 	var chargeModel model.Charges
-	res := chargeController.ChargeRepository.CreateCharge(chargeModel)
-	c.JSON(http.StatusOK, res)
+	chargeController.ChargeRepository.CreateCharge(chargeModel)
+	c.JSON(http.StatusOK, &response.ChargeResponse{Code: "SERVER_CONTROLLER_CREATE__FOR__001", Message: "Charge created successfully", Charges: []response.Charge{}})
 	return
 }
-
 
 func (chargeController chargeControllerForPrivate) UpdateCharge(c *gin.Context) {
 	var chargeRequest request.ChargeRequest
@@ -53,11 +51,10 @@ func (chargeController chargeControllerForPrivate) UpdateCharge(c *gin.Context) 
 		return
 	}
 	var chargeModel model.Charges
-	res := chargeController.ChargeRepository.UpdateCharge(chargeModel)
-	c.JSON(http.StatusOK, res)
+	chargeController.ChargeRepository.UpdateCharge(chargeModel)
+	c.JSON(http.StatusOK, &response.ChargeResponse{Code: "SERVER_CONTROLLER_UPDATE__FOR__001", Message: "Charge updated successfully", Charges: []response.Charge{}})
 	return
 }
-
 
 func (chargeController chargeControllerForPrivate) DeleteCharge(c *gin.Context) {
 	var chargeRequest request.ChargeRequest
@@ -65,13 +62,12 @@ func (chargeController chargeControllerForPrivate) DeleteCharge(c *gin.Context) 
 		c.JSON(http.StatusBadRequest, &response.ChargeResponse{Code: "SERVER_CONTROLLER_DELETE__FOR__001", Message: err.Error(), Charges: []response.Charge{}})
 		return
 	}
-	var uuid string
-	res := chargeController.ChargeRepository.DeleteCharge(uuid)
-	c.JSON(http.StatusOK, res)
+	var chargeModel model.Charges
+	chargeController.ChargeRepository.DeleteCharge(chargeModel)
+	c.JSON(http.StatusOK, &response.ChargeResponse{Code: "SERVER_CONTROLLER_DELETE__FOR__001", Message: "Charge deleted successfully", Charges: []response.Charge{}})
 	return
 }
 
-
 func NewChargeControllerForPrivate(chargeRepository repository.ChargeRepository) ChargeControllerForPrivate {
-	return &chargeControllerForPrivate{ ChargeRepository: chargeRepository}
+	return &chargeControllerForPrivate{ChargeRepository: chargeRepository}
 }

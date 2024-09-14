@@ -27,11 +27,10 @@ func (eventController eventControllerForInternal) GetEvents(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, &response.EventResponse{Code: "SERVER_CONTROLLER_GET__FOR__001", Message: err.Error(), Events: []response.Event{}})
 		return
 	}
-	res := eventController.EventRepository.GetEvents()
-	c.JSON(http.StatusOK, res)
+	eventController.EventRepository.GetEvents()
+	c.JSON(http.StatusOK, &response.EventResponse{Code: "SERVER_CONTROLLER_GET__FOR__002", Message: "Success", Events: []response.Event{}})
 	return
 }
-
 
 func (eventController eventControllerForInternal) CreateEvent(c *gin.Context) {
 	var eventRequest request.EventRequest
@@ -40,11 +39,10 @@ func (eventController eventControllerForInternal) CreateEvent(c *gin.Context) {
 		return
 	}
 	var eventModel model.Events
-	res := eventController.EventRepository.CreateEvent(eventModel)
-	c.JSON(http.StatusOK, res)
+	eventController.EventRepository.CreateEvent(eventModel)
+	c.JSON(http.StatusOK, &response.EventResponse{Code: "SERVER_CONTROLLER_CREATE__FOR__002", Message: "Success", Events: []response.Event{}})
 	return
 }
-
 
 func (eventController eventControllerForInternal) UpdateEvent(c *gin.Context) {
 	var eventRequest request.EventRequest
@@ -53,11 +51,10 @@ func (eventController eventControllerForInternal) UpdateEvent(c *gin.Context) {
 		return
 	}
 	var eventModel model.Events
-	res := eventController.EventRepository.UpdateEvent(eventModel)
-	c.JSON(http.StatusOK, res)
+	eventController.EventRepository.UpdateEvent(eventModel)
+	c.JSON(http.StatusOK, &response.EventResponse{Code: "SERVER_CONTROLLER_UPDATE__FOR__002", Message: "Success", Events: []response.Event{}})
 	return
 }
-
 
 func (eventController eventControllerForInternal) DeleteEvent(c *gin.Context) {
 	var eventRequest request.EventRequest
@@ -65,13 +62,12 @@ func (eventController eventControllerForInternal) DeleteEvent(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, &response.EventResponse{Code: "SERVER_CONTROLLER_DELETE__FOR__001", Message: err.Error(), Events: []response.Event{}})
 		return
 	}
-	var uuid string
-	res := eventController.EventRepository.DeleteEvent(uuid)
-	c.JSON(http.StatusOK, res)
+	var eventModel model.Events
+	eventController.EventRepository.DeleteEvent(eventModel)
+	c.JSON(http.StatusOK, &response.EventResponse{Code: "SERVER_CONTROLLER_DELETE__FOR__002", Message: "Success", Events: []response.Event{}})
 	return
 }
 
-
 func NewEventControllerForInternal(eventRepository repository.EventRepository) EventControllerForInternal {
-	return &eventControllerForInternal{ EventRepository: eventRepository}
+	return &eventControllerForInternal{EventRepository: eventRepository}
 }

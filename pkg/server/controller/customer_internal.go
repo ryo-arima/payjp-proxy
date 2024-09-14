@@ -27,11 +27,10 @@ func (customerController customerControllerForInternal) GetCustomers(c *gin.Cont
 		c.JSON(http.StatusBadRequest, &response.CustomerResponse{Code: "SERVER_CONTROLLER_GET__FOR__001", Message: err.Error(), Customers: []response.Customer{}})
 		return
 	}
-	res := customerController.CustomerRepository.GetCustomers()
-	c.JSON(http.StatusOK, res)
+	customerController.CustomerRepository.GetCustomers()
+	c.JSON(http.StatusOK, &response.CustomerResponse{Code: "SERVER_CONTROLLER_GET__FOR__001", Message: "", Customers: []response.Customer{}})
 	return
 }
-
 
 func (customerController customerControllerForInternal) CreateCustomer(c *gin.Context) {
 	var customerRequest request.CustomerRequest
@@ -40,11 +39,10 @@ func (customerController customerControllerForInternal) CreateCustomer(c *gin.Co
 		return
 	}
 	var customerModel model.Customers
-	res := customerController.CustomerRepository.CreateCustomer(customerModel)
-	c.JSON(http.StatusOK, res)
+	customerController.CustomerRepository.CreateCustomer(customerModel)
+	c.JSON(http.StatusOK, &response.CustomerResponse{Code: "", Message: "", Customers: []response.Customer{}})
 	return
 }
-
 
 func (customerController customerControllerForInternal) UpdateCustomer(c *gin.Context) {
 	var customerRequest request.CustomerRequest
@@ -53,11 +51,10 @@ func (customerController customerControllerForInternal) UpdateCustomer(c *gin.Co
 		return
 	}
 	var customerModel model.Customers
-	res := customerController.CustomerRepository.UpdateCustomer(customerModel)
-	c.JSON(http.StatusOK, res)
+	customerController.CustomerRepository.UpdateCustomer(customerModel)
+	c.JSON(http.StatusOK, &response.CustomerResponse{Code: "", Message: "", Customers: []response.Customer{}})
 	return
 }
-
 
 func (customerController customerControllerForInternal) DeleteCustomer(c *gin.Context) {
 	var customerRequest request.CustomerRequest
@@ -65,13 +62,12 @@ func (customerController customerControllerForInternal) DeleteCustomer(c *gin.Co
 		c.JSON(http.StatusBadRequest, &response.CustomerResponse{Code: "SERVER_CONTROLLER_DELETE__FOR__001", Message: err.Error(), Customers: []response.Customer{}})
 		return
 	}
-	var uuid string
-	res := customerController.CustomerRepository.DeleteCustomer(uuid)
-	c.JSON(http.StatusOK, res)
+	var customerModel model.Customers
+	customerController.CustomerRepository.DeleteCustomer(customerModel)
+	c.JSON(http.StatusOK, &response.CustomerResponse{Code: "", Message: "", Customers: []response.Customer{}})
 	return
 }
 
-
 func NewCustomerControllerForInternal(customerRepository repository.CustomerRepository) CustomerControllerForInternal {
-	return &customerControllerForInternal{ CustomerRepository: customerRepository}
+	return &customerControllerForInternal{CustomerRepository: customerRepository}
 }

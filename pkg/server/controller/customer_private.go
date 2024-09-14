@@ -32,7 +32,6 @@ func (customerController customerControllerForPrivate) GetCustomers(c *gin.Conte
 	return
 }
 
-
 func (customerController customerControllerForPrivate) CreateCustomer(c *gin.Context) {
 	var customerRequest request.CustomerRequest
 	if err := c.Bind(&customerRequest); err != nil {
@@ -44,7 +43,6 @@ func (customerController customerControllerForPrivate) CreateCustomer(c *gin.Con
 	c.JSON(http.StatusOK, res)
 	return
 }
-
 
 func (customerController customerControllerForPrivate) UpdateCustomer(c *gin.Context) {
 	var customerRequest request.CustomerRequest
@@ -58,20 +56,18 @@ func (customerController customerControllerForPrivate) UpdateCustomer(c *gin.Con
 	return
 }
 
-
 func (customerController customerControllerForPrivate) DeleteCustomer(c *gin.Context) {
 	var customerRequest request.CustomerRequest
 	if err := c.Bind(&customerRequest); err != nil {
 		c.JSON(http.StatusBadRequest, &response.CustomerResponse{Code: "SERVER_CONTROLLER_DELETE__FOR__001", Message: err.Error(), Customers: []response.Customer{}})
 		return
 	}
-	var uuid string
-	res := customerController.CustomerRepository.DeleteCustomer(uuid)
+	var customerModel model.Customers
+	res := customerController.CustomerRepository.DeleteCustomer(customerModel)
 	c.JSON(http.StatusOK, res)
 	return
 }
 
-
 func NewCustomerControllerForPrivate(customerRepository repository.CustomerRepository) CustomerControllerForPrivate {
-	return &customerControllerForPrivate{ CustomerRepository: customerRepository}
+	return &customerControllerForPrivate{CustomerRepository: customerRepository}
 }

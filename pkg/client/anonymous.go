@@ -57,8 +57,6 @@ func ClientForAnonymousUser(conf config.BaseConfig) {
 	baseCmdForAnonymousUser.Get.AddCommand(getTermCmdForAnonymousUser)
 	getBalanceCmdForAnonymousUser := controller.InitGetBalanceCmdForAnonymousUser(conf)
 	baseCmdForAnonymousUser.Get.AddCommand(getBalanceCmdForAnonymousUser)
-	getProductCmdForAnonymousUser := controller.InitGetProductCmdForAnonymousUser(conf)
-	baseCmdForAnonymousUser.Get.AddCommand(getProductCmdForAnonymousUser)
 	rootCmdForAnonymousUser.AddCommand(baseCmdForAnonymousUser.Get)
 
 	rootCmdForAnonymousUser.Execute()

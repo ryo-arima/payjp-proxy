@@ -45,11 +45,6 @@ func InitRouter(conf config.BaseConfig) *gin.Engine {
 	subscriptionControllerForInternal := controller.NewSubscriptionControllerForInternal(subscriptionRepository)
 	subscriptionControllerForPrivate := controller.NewSubscriptionControllerForPrivate(subscriptionRepository)
 
-	transferRepository := repository.NewTransferRepository(conf)
-	transferControllerForPublic := controller.NewTransferControllerForPublic(transferRepository)
-	transferControllerForInternal := controller.NewTransferControllerForInternal(transferRepository)
-	transferControllerForPrivate := controller.NewTransferControllerForPrivate(transferRepository)
-
 	termRepository := repository.NewTermRepository(conf)
 	termControllerForPublic := controller.NewTermControllerForPublic(termRepository)
 	termControllerForInternal := controller.NewTermControllerForInternal(termRepository)
@@ -139,17 +134,6 @@ func InitRouter(conf config.BaseConfig) *gin.Engine {
 	privateAPI.POST("/subscription", subscriptionControllerForPrivate.CreateSubscription)
 	privateAPI.PUT("/subscription", subscriptionControllerForPrivate.UpdateSubscription)
 	privateAPI.DELETE("/subscription", subscriptionControllerForPrivate.DeleteSubscription)
-
-	//transfer
-	publicAPI.GET("/transfers", transferControllerForPublic.GetTransfers)
-	internalAPI.GET("/transfers", transferControllerForInternal.GetTransfers)
-	internalAPI.POST("/transfer", transferControllerForInternal.CreateTransfer)
-	internalAPI.PUT("/transfer", transferControllerForInternal.UpdateTransfer)
-	internalAPI.DELETE("/transfer", transferControllerForInternal.DeleteTransfer)
-	privateAPI.GET("/transfers", transferControllerForPrivate.GetTransfers)
-	privateAPI.POST("/transfer", transferControllerForPrivate.CreateTransfer)
-	privateAPI.PUT("/transfer", transferControllerForPrivate.UpdateTransfer)
-	privateAPI.DELETE("/transfer", transferControllerForPrivate.DeleteTransfer)
 
 	//term
 	publicAPI.GET("/terms", termControllerForPublic.GetTerms)

@@ -78,8 +78,6 @@ func ClientForAppUser(conf config.BaseConfig) {
 	baseCmdForAppUser.Create.AddCommand(createTermCmdForAppUser)
 	createBalanceCmdForAppUser := controller.InitCreateBalanceCmdForAppUser(conf)
 	baseCmdForAppUser.Create.AddCommand(createBalanceCmdForAppUser)
-	createProductCmdForAppUser := controller.InitCreateProductCmdForAppUser(conf)
-	baseCmdForAppUser.Create.AddCommand(createProductCmdForAppUser)
 	rootCmdForAppUser.AddCommand(baseCmdForAppUser.Create)
 
 	//get
@@ -103,8 +101,6 @@ func ClientForAppUser(conf config.BaseConfig) {
 	baseCmdForAppUser.Get.AddCommand(getTermCmdForAppUser)
 	getBalanceCmdForAppUser := controller.InitGetBalanceCmdForAppUser(conf)
 	baseCmdForAppUser.Get.AddCommand(getBalanceCmdForAppUser)
-	getProductCmdForAppUser := controller.InitGetProductCmdForAppUser(conf)
-	baseCmdForAppUser.Get.AddCommand(getProductCmdForAppUser)
 	rootCmdForAppUser.AddCommand(baseCmdForAppUser.Get)
 
 	//update
@@ -128,8 +124,6 @@ func ClientForAppUser(conf config.BaseConfig) {
 	baseCmdForAppUser.Update.AddCommand(updateTermCmdForAppUser)
 	updateBalanceCmdForAppUser := controller.InitUpdateBalanceCmdForAppUser(conf)
 	baseCmdForAppUser.Update.AddCommand(updateBalanceCmdForAppUser)
-	updateProductCmdForAppUser := controller.InitUpdateProductCmdForAppUser(conf)
-	baseCmdForAppUser.Update.AddCommand(updateProductCmdForAppUser)
 	rootCmdForAppUser.AddCommand(baseCmdForAppUser.Update)
 
 	//delete
@@ -153,8 +147,6 @@ func ClientForAppUser(conf config.BaseConfig) {
 	baseCmdForAppUser.Delete.AddCommand(deleteTermCmdForAppUser)
 	deleteBalanceCmdForAppUser := controller.InitDeleteBalanceCmdForAppUser(conf)
 	baseCmdForAppUser.Delete.AddCommand(deleteBalanceCmdForAppUser)
-	deleteProductCmdForAppUser := controller.InitDeleteProductCmdForAppUser(conf)
-	baseCmdForAppUser.Delete.AddCommand(deleteProductCmdForAppUser)
 	rootCmdForAppUser.AddCommand(baseCmdForAppUser.Delete)
 
 	rootCmdForAppUser.Execute()

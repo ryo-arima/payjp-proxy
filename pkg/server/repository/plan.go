@@ -6,30 +6,30 @@ import (
 )
 
 type PlanRepository interface {
-	GetPlans() []model.Plans
-	CreatePlan(plan model.Plans) model.Plans
-	UpdatePlan(plan model.Plans) model.Plans
-	DeletePlan(plan model.Plans) model.Plans
+	GetPlans() []model.Plan
+	CreatePlan(plan model.Plan) model.Plan
+	UpdatePlan(plan model.Plan) model.Plan
+	DeletePlan(plan model.Plan) model.Plan
 }
 
 type planRepository struct {
 	BaseConfig config.BaseConfig
 }
 
-func (planRepository planRepository) GetPlans() []model.Plans {
-	var plans []model.Plans
-	return plans
-}
-
-func (planRepository planRepository) CreatePlan(plan model.Plans) model.Plans {
+func (planRepository planRepository) GetPlans() []model.Plan {
+	var plan []model.Plan
 	return plan
 }
 
-func (planRepository planRepository) UpdatePlan(plan model.Plans) model.Plans {
+func (planRepository planRepository) CreatePlan(plan model.Plan) model.Plan {
 	return plan
 }
 
-func (planRepository planRepository) DeletePlan(plan model.Plans) model.Plans {
+func (planRepository planRepository) UpdatePlan(plan model.Plan) model.Plan {
+	return plan
+}
+
+func (planRepository planRepository) DeletePlan(plan model.Plan) model.Plan {
 	return plan
 }
 

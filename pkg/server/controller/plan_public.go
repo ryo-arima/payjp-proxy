@@ -28,7 +28,6 @@ func (planController planControllerForPublic) GetPlans(c *gin.Context) {
 	return
 }
 
-
 func NewPlanControllerForPublic(planRepository repository.PlanRepository) PlanControllerForPublic {
-	return &planControllerForPublic{ PlanRepository: planRepository}
+	return &planControllerForPublic{PlanRepository: planRepository}
 }

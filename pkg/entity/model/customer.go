@@ -1,11 +1,14 @@
 package model
 
-import "time"
-
 type Customers struct {
-    ID          uint `gorm:"primaryKey,autoIncrement"`
-    UUID        string 
-    CreatedAt   *time.Time
-	UpdatedAt   *time.Time
-	DeletedAt   *time.Time
+	Cards         Card         `json:"cards"`
+	Created       int64        `json:"created"`
+	DefaultCard   interface{}  `json:"default_card"`
+	Description   string       `json:"description"`
+	Email         interface{}  `json:"email"`
+	ID            string       `json:"id"`
+	Livemode      bool         `json:"livemode"`
+	Metadata      interface{}  `json:"metadata"`
+	Object        string       `json:"object"`
+	Subscriptions Subscription `json:"subscriptions"`
 }

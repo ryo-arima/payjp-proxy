@@ -8,10 +8,10 @@ type PayjpConfig struct {
 	Service *payjp.Service
 }
 
-func NewPayjpConfig(conf YamlConfig) (*PayjpConfig, error) {
+func NewPayjpConfig(conf YamlConfig) (PayjpConfig, error) {
 	secret := conf.Payjp.Secret
 	service := payjp.New(secret, nil)
-	return &PayjpConfig{
+	return PayjpConfig{
 		Service: service,
 	}, nil
 }

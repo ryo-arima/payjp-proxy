@@ -1,11 +1,15 @@
 package model
 
-import "time"
-
-type Plans struct {
-    ID          uint `gorm:"primaryKey,autoIncrement"`
-    UUID        string 
-    CreatedAt   *time.Time
-	UpdatedAt   *time.Time
-	DeletedAt   *time.Time
+type Plan struct {
+	Amount     int         `json:"amount"`
+	BillingDay interface{} `json:"billing_day"`
+	Created    int64       `json:"created"`
+	Currency   string      `json:"currency"`
+	ID         string      `json:"id"`
+	Interval   string      `json:"interval"`
+	Livemode   bool        `json:"livemode"`
+	Metadata   interface{} `json:"metadata"`
+	Name       interface{} `json:"name"`
+	Object     string      `json:"object"`
+	TrialDays  int         `json:"trial_days"`
 }

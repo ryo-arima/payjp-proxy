@@ -38,7 +38,7 @@ func (planController planControllerForPrivate) CreatePlan(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, &response.PlanResponse{Code: "SERVER_CONTROLLER_CREATE__FOR__001", Message: err.Error(), Plans: []response.Plan{}})
 		return
 	}
-	var planModel model.Plans
+	var planModel model.Plan
 	res := planController.PlanRepository.CreatePlan(planModel)
 	c.JSON(http.StatusOK, res)
 	return
@@ -50,7 +50,7 @@ func (planController planControllerForPrivate) UpdatePlan(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, &response.PlanResponse{Code: "SERVER_CONTROLLER_UPDATE__FOR__001", Message: err.Error(), Plans: []response.Plan{}})
 		return
 	}
-	var planModel model.Plans
+	var planModel model.Plan
 	res := planController.PlanRepository.UpdatePlan(planModel)
 	c.JSON(http.StatusOK, res)
 	return
@@ -62,7 +62,7 @@ func (planController planControllerForPrivate) DeletePlan(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, &response.PlanResponse{Code: "SERVER_CONTROLLER_DELETE__FOR__001", Message: err.Error(), Plans: []response.Plan{}})
 		return
 	}
-	var planModel model.Plans
+	var planModel model.Plan
 	res := planController.PlanRepository.DeletePlan(planModel)
 	c.JSON(http.StatusOK, res)
 	return

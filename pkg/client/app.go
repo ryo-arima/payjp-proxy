@@ -7,10 +7,10 @@ import (
 )
 
 type BaseCmdForAppUser struct {
-	Create    *cobra.Command
-	Get       *cobra.Command
-	Update    *cobra.Command
-	Delete    *cobra.Command
+	Create *cobra.Command
+	Get    *cobra.Command
+	Update *cobra.Command
+	Delete *cobra.Command
 }
 
 func InitRootCmdForAppUser() *cobra.Command {
@@ -44,10 +44,10 @@ func InitBaseCmdForAppUser() BaseCmdForAppUser {
 		Long:  "delete the value of a key",
 	}
 	baseCmdForAppUser := BaseCmdForAppUser{
-		Create:    createCmd,
-		Get:       getCmd,
-		Update:    updateCmd,
-		Delete:    deleteCmd,
+		Create: createCmd,
+		Get:    getCmd,
+		Update: updateCmd,
+		Delete: deleteCmd,
 	}
 	return baseCmdForAppUser
 }
@@ -80,10 +80,8 @@ func ClientForAppUser(conf config.BaseConfig) {
 	baseCmdForAppUser.Create.AddCommand(createBalanceCmdForAppUser)
 	createProductCmdForAppUser := controller.InitCreateProductCmdForAppUser(conf)
 	baseCmdForAppUser.Create.AddCommand(createProductCmdForAppUser)
-	createAccountCmdForAppUser := controller.InitCreateAccountCmdForAppUser(conf)
-	baseCmdForAppUser.Create.AddCommand(createAccountCmdForAppUser)
 	rootCmdForAppUser.AddCommand(baseCmdForAppUser.Create)
-	
+
 	//get
 	getCommonCmdForAppUser := controller.InitGetCommonCmdForAppUser(conf)
 	baseCmdForAppUser.Get.AddCommand(getCommonCmdForAppUser)
@@ -107,10 +105,8 @@ func ClientForAppUser(conf config.BaseConfig) {
 	baseCmdForAppUser.Get.AddCommand(getBalanceCmdForAppUser)
 	getProductCmdForAppUser := controller.InitGetProductCmdForAppUser(conf)
 	baseCmdForAppUser.Get.AddCommand(getProductCmdForAppUser)
-	getAccountCmdForAppUser := controller.InitGetAccountCmdForAppUser(conf)
-	baseCmdForAppUser.Get.AddCommand(getAccountCmdForAppUser)
 	rootCmdForAppUser.AddCommand(baseCmdForAppUser.Get)
-	
+
 	//update
 	updateCommonCmdForAppUser := controller.InitUpdateCommonCmdForAppUser(conf)
 	baseCmdForAppUser.Update.AddCommand(updateCommonCmdForAppUser)
@@ -134,10 +130,8 @@ func ClientForAppUser(conf config.BaseConfig) {
 	baseCmdForAppUser.Update.AddCommand(updateBalanceCmdForAppUser)
 	updateProductCmdForAppUser := controller.InitUpdateProductCmdForAppUser(conf)
 	baseCmdForAppUser.Update.AddCommand(updateProductCmdForAppUser)
-	updateAccountCmdForAppUser := controller.InitUpdateAccountCmdForAppUser(conf)
-	baseCmdForAppUser.Update.AddCommand(updateAccountCmdForAppUser)
 	rootCmdForAppUser.AddCommand(baseCmdForAppUser.Update)
-	
+
 	//delete
 	deleteCommonCmdForAppUser := controller.InitDeleteCommonCmdForAppUser(conf)
 	baseCmdForAppUser.Delete.AddCommand(deleteCommonCmdForAppUser)
@@ -161,8 +155,6 @@ func ClientForAppUser(conf config.BaseConfig) {
 	baseCmdForAppUser.Delete.AddCommand(deleteBalanceCmdForAppUser)
 	deleteProductCmdForAppUser := controller.InitDeleteProductCmdForAppUser(conf)
 	baseCmdForAppUser.Delete.AddCommand(deleteProductCmdForAppUser)
-	deleteAccountCmdForAppUser := controller.InitDeleteAccountCmdForAppUser(conf)
-	baseCmdForAppUser.Delete.AddCommand(deleteAccountCmdForAppUser)
 	rootCmdForAppUser.AddCommand(baseCmdForAppUser.Delete)
 
 	rootCmdForAppUser.Execute()

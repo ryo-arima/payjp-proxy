@@ -7,7 +7,7 @@ import (
 )
 
 type BaseCmdForAnonymousUser struct {
-	Get       *cobra.Command
+	Get *cobra.Command
 }
 
 func InitRootCmdForAnonymousUser() *cobra.Command {
@@ -26,7 +26,7 @@ func InitBaseCmdForAnonymousUser() BaseCmdForAnonymousUser {
 		Long:  "get the value of a key",
 	}
 	baseCmdForAnonymousUser := BaseCmdForAnonymousUser{
-		Get:       getCmd,
+		Get: getCmd,
 	}
 	return baseCmdForAnonymousUser
 }
@@ -59,9 +59,7 @@ func ClientForAnonymousUser(conf config.BaseConfig) {
 	baseCmdForAnonymousUser.Get.AddCommand(getBalanceCmdForAnonymousUser)
 	getProductCmdForAnonymousUser := controller.InitGetProductCmdForAnonymousUser(conf)
 	baseCmdForAnonymousUser.Get.AddCommand(getProductCmdForAnonymousUser)
-	getAccountCmdForAnonymousUser := controller.InitGetAccountCmdForAnonymousUser(conf)
-	baseCmdForAnonymousUser.Get.AddCommand(getAccountCmdForAnonymousUser)
 	rootCmdForAnonymousUser.AddCommand(baseCmdForAnonymousUser.Get)
-	
+
 	rootCmdForAnonymousUser.Execute()
 }

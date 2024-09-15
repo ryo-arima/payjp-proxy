@@ -87,8 +87,6 @@ func ClientForAdminUser(conf config.BaseConfig) {
 	baseCmdForAdminUser.Bootstrap.AddCommand(bootstrapBalanceCmdForAdminUser)
 	bootstrapProductCmdForAdminUser := controller.InitBootstrapProductCmdForAdminUser(conf)
 	baseCmdForAdminUser.Bootstrap.AddCommand(bootstrapProductCmdForAdminUser)
-	bootstrapAccountCmdForAdminUser := controller.InitBootstrapAccountCmdForAdminUser(conf)
-	baseCmdForAdminUser.Bootstrap.AddCommand(bootstrapAccountCmdForAdminUser)
 	rootCmdForAdminUser.AddCommand(baseCmdForAdminUser.Bootstrap)
 
 	//create
@@ -114,8 +112,6 @@ func ClientForAdminUser(conf config.BaseConfig) {
 	baseCmdForAdminUser.Create.AddCommand(createBalanceCmdForAdminUser)
 	createProductCmdForAdminUser := controller.InitCreateProductCmdForAdminUser(conf)
 	baseCmdForAdminUser.Create.AddCommand(createProductCmdForAdminUser)
-	createAccountCmdForAdminUser := controller.InitCreateAccountCmdForAdminUser(conf)
-	baseCmdForAdminUser.Create.AddCommand(createAccountCmdForAdminUser)
 	rootCmdForAdminUser.AddCommand(baseCmdForAdminUser.Create)
 
 	//get
@@ -141,8 +137,6 @@ func ClientForAdminUser(conf config.BaseConfig) {
 	baseCmdForAdminUser.Get.AddCommand(getBalanceCmdForAdminUser)
 	getProductCmdForAdminUser := controller.InitGetProductCmdForAdminUser(conf)
 	baseCmdForAdminUser.Get.AddCommand(getProductCmdForAdminUser)
-	getAccountCmdForAdminUser := controller.InitGetAccountCmdForAdminUser(conf)
-	baseCmdForAdminUser.Get.AddCommand(getAccountCmdForAdminUser)
 	rootCmdForAdminUser.AddCommand(baseCmdForAdminUser.Get)
 
 	//update
@@ -168,10 +162,8 @@ func ClientForAdminUser(conf config.BaseConfig) {
 	baseCmdForAdminUser.Update.AddCommand(updateBalanceCmdForAdminUser)
 	updateProductCmdForAdminUser := controller.InitUpdateProductCmdForAdminUser(conf)
 	baseCmdForAdminUser.Update.AddCommand(updateProductCmdForAdminUser)
-	updateAccountCmdForAdminUser := controller.InitUpdateAccountCmdForAdminUser(conf)
-	baseCmdForAdminUser.Update.AddCommand(updateAccountCmdForAdminUser)
 	rootCmdForAdminUser.AddCommand(baseCmdForAdminUser.Update)
-	
+
 	//delete
 	deleteCommonCmdForAdminUser := controller.InitDeleteCommonCmdForAdminUser(conf)
 	baseCmdForAdminUser.Delete.AddCommand(deleteCommonCmdForAdminUser)
@@ -195,8 +187,6 @@ func ClientForAdminUser(conf config.BaseConfig) {
 	baseCmdForAdminUser.Delete.AddCommand(deleteBalanceCmdForAdminUser)
 	deleteProductCmdForAdminUser := controller.InitDeleteProductCmdForAdminUser(conf)
 	baseCmdForAdminUser.Delete.AddCommand(deleteProductCmdForAdminUser)
-	deleteAccountCmdForAdminUser := controller.InitDeleteAccountCmdForAdminUser(conf)
-	baseCmdForAdminUser.Delete.AddCommand(deleteAccountCmdForAdminUser)
 	rootCmdForAdminUser.AddCommand(baseCmdForAdminUser.Delete)
 
 	rootCmdForAdminUser.Execute()

@@ -1,5 +1,8 @@
 package request
 
 type BalanceRequest struct {
-    UUID string
+	Balance Balance
+}
+
+type Balance struct {
 }

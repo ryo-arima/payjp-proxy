@@ -1,5 +1,8 @@
 package request
 
 type SubscriptionRequest struct {
-    UUID string
+	Subscription Subscription
+}
+
+type Subscription struct {
 }

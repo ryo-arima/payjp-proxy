@@ -1,5 +1,8 @@
 package request
 
 type StatementRequest struct {
-    UUID string
+	Statement Statement
+}
+
+type Statement struct {
 }

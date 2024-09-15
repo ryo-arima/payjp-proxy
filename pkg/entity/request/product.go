@@ -1,5 +1,8 @@
 package request
 
 type ProductRequest struct {
-    UUID string
+	Product Product
+}
+
+type Product struct {
 }

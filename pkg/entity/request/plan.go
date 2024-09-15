@@ -1,5 +1,8 @@
 package request
 
 type PlanRequest struct {
-    UUID string
+	Plan Plan
+}
+
+type Plan struct {
 }

@@ -1,5 +1,8 @@
 package request
 
 type TermRequest struct {
-    UUID string
+	Term Term
+}
+
+type Term struct {
 }

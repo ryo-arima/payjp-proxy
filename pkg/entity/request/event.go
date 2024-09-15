@@ -1,5 +1,8 @@
 package request
 
 type EventRequest struct {
-    UUID string
+	Event Event
+}
+
+type Event struct {
 }

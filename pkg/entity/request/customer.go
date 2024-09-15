@@ -1,5 +1,8 @@
 package request
 
 type CustomerRequest struct {
-    UUID string
+	Customer Customers
+}
+
+type Customers struct {
 }

@@ -1,5 +1,8 @@
 package request
 
 type ChargeRequest struct {
-    UUID string
+	Charge Charges
+}
+
+type Charges struct {
 }

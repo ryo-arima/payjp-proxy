@@ -60,11 +60,6 @@ func InitRouter(conf config.BaseConfig) *gin.Engine {
 	balanceControllerForInternal := controller.NewBalanceControllerForInternal(balanceRepository)
 	balanceControllerForPrivate := controller.NewBalanceControllerForPrivate(balanceRepository)
 
-	productRepository := repository.NewProductRepository(conf)
-	productControllerForPublic := controller.NewProductControllerForPublic(productRepository)
-	productControllerForInternal := controller.NewProductControllerForInternal(productRepository)
-	productControllerForPrivate := controller.NewProductControllerForPrivate(productRepository)
-
 	router := gin.Default()
 	privateAPI := router.Group("api/private")
 	internalAPI := router.Group("api/internal")
@@ -82,13 +77,13 @@ func InitRouter(conf config.BaseConfig) *gin.Engine {
 	//event
 	publicAPI.GET("/events", eventControllerForPublic.GetEvents)
 	internalAPI.GET("/events", eventControllerForInternal.GetEvents)
-	internalAPI.POST("/event", eventControllerForInternal.CreateEvent)
-	internalAPI.PUT("/event", eventControllerForInternal.UpdateEvent)
-	internalAPI.DELETE("/event", eventControllerForInternal.DeleteEvent)
+	//internalAPI.POST("/event", eventControllerForInternal.CreateEvent)
+	//internalAPI.PUT("/event", eventControllerForInternal.UpdateEvent)
+	//internalAPI.DELETE("/event", eventControllerForInternal.DeleteEvent)
 	privateAPI.GET("/events", eventControllerForPrivate.GetEvents)
-	privateAPI.POST("/event", eventControllerForPrivate.CreateEvent)
-	privateAPI.PUT("/event", eventControllerForPrivate.UpdateEvent)
-	privateAPI.DELETE("/event", eventControllerForPrivate.DeleteEvent)
+	//privateAPI.POST("/event", eventControllerForPrivate.CreateEvent)
+	//privateAPI.PUT("/event", eventControllerForPrivate.UpdateEvent)
+	//privateAPI.DELETE("/event", eventControllerForPrivate.DeleteEvent)
 
 	//charge
 	publicAPI.GET("/charges", chargeControllerForPublic.GetCharges)
@@ -177,17 +172,6 @@ func InitRouter(conf config.BaseConfig) *gin.Engine {
 	privateAPI.POST("/balance", balanceControllerForPrivate.CreateBalance)
 	privateAPI.PUT("/balance", balanceControllerForPrivate.UpdateBalance)
 	privateAPI.DELETE("/balance", balanceControllerForPrivate.DeleteBalance)
-
-	//product
-	publicAPI.GET("/products", productControllerForPublic.GetProducts)
-	internalAPI.GET("/products", productControllerForInternal.GetProducts)
-	internalAPI.POST("/product", productControllerForInternal.CreateProduct)
-	internalAPI.PUT("/product", productControllerForInternal.UpdateProduct)
-	internalAPI.DELETE("/product", productControllerForInternal.DeleteProduct)
-	privateAPI.GET("/products", productControllerForPrivate.GetProducts)
-	privateAPI.POST("/product", productControllerForPrivate.CreateProduct)
-	privateAPI.PUT("/product", productControllerForPrivate.UpdateProduct)
-	privateAPI.DELETE("/product", productControllerForPrivate.DeleteProduct)
 
 	return router
 }

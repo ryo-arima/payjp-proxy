@@ -24,16 +24,16 @@ type CustomerUsecase interface {
 }
 
 type customerUsecase struct {
-	CustomerRepository   repository.CustomerRepository
+	CustomerRepository repository.CustomerRepository
 }
 
-//Bootstrap
+// Bootstrap
 func (customerUsecase customerUsecase) BootstrapCustomerForDB(request request.CustomerRequest) {
 	customers := customerUsecase.CustomerRepository.BootstrapCustomerForDB(request)
 	fmt.Println(customers)
 }
 
-//GET
+// GET
 func (customerUsecase customerUsecase) GetCustomerForPublic(request request.CustomerRequest) {
 	customers := customerUsecase.CustomerRepository.GetCustomerForPublic(request)
 	fmt.Println(customers)
@@ -49,7 +49,7 @@ func (customerUsecase customerUsecase) GetCustomerForPrivate(request request.Cus
 	fmt.Println(customers)
 }
 
-//CREATE
+// CREATE
 func (customerUsecase customerUsecase) CreateCustomerForPublic(request request.CustomerRequest) {
 	customers := customerUsecase.CustomerRepository.CreateCustomerForPublic(request)
 	fmt.Println(customers)
@@ -65,7 +65,7 @@ func (customerUsecase customerUsecase) CreateCustomerForPrivate(request request.
 	fmt.Println(customers)
 }
 
-//UPDATE
+// UPDATE
 func (customerUsecase customerUsecase) UpdateCustomerForPublic(request request.CustomerRequest) {
 	customers := customerUsecase.CustomerRepository.UpdateCustomerForPublic(request)
 	fmt.Println(customers)
@@ -81,7 +81,7 @@ func (customerUsecase customerUsecase) UpdateCustomerForPrivate(request request.
 	fmt.Println(customers)
 }
 
-//DELETE
+// DELETE
 func (customerUsecase customerUsecase) DeleteCustomerForPublic(request request.CustomerRequest) {
 	customers := customerUsecase.CustomerRepository.DeleteCustomerForPublic(request)
 	fmt.Println(customers)
@@ -98,5 +98,5 @@ func (customerUsecase customerUsecase) DeleteCustomerForPrivate(request request.
 }
 
 func NewCustomerUsecase(customerRepository repository.CustomerRepository) CustomerUsecase {
-	return &customerUsecase{ CustomerRepository: customerRepository}
+	return &customerUsecase{CustomerRepository: customerRepository}
 }

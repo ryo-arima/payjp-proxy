@@ -8,6 +8,7 @@ import (
 
 type YamlConfig struct {
 	Application Application `yaml:"Application"`
+	Payjp       Payjp       `yaml:"Payjp"`
 }
 
 type Server struct {
@@ -29,6 +30,13 @@ type Application struct {
 
 type Admin struct {
 	Emails []string `yaml:"emails"`
+}
+type PayJpConfig struct {
+	Payjp string `yaml:"Payjp"`
+}
+
+type Payjp struct {
+	Secret string `yaml:"secret"`
 }
 
 type YamlLoader interface {

@@ -8,7 +8,6 @@ import (
 )
 
 type BalanceUsecase interface {
-	BootstrapBalanceForDB(request request.BalanceRequest)
 	GetBalanceForPublic(request request.BalanceRequest)
 	GetBalanceForInternal(request request.BalanceRequest)
 	GetBalanceForPrivate(request request.BalanceRequest)
@@ -24,16 +23,10 @@ type BalanceUsecase interface {
 }
 
 type balanceUsecase struct {
-	BalanceRepository   repository.BalanceRepository
+	BalanceRepository repository.BalanceRepository
 }
 
-//Bootstrap
-func (balanceUsecase balanceUsecase) BootstrapBalanceForDB(request request.BalanceRequest) {
-	balances := balanceUsecase.BalanceRepository.BootstrapBalanceForDB(request)
-	fmt.Println(balances)
-}
-
-//GET
+// GET
 func (balanceUsecase balanceUsecase) GetBalanceForPublic(request request.BalanceRequest) {
 	balances := balanceUsecase.BalanceRepository.GetBalanceForPublic(request)
 	fmt.Println(balances)
@@ -49,7 +42,7 @@ func (balanceUsecase balanceUsecase) GetBalanceForPrivate(request request.Balanc
 	fmt.Println(balances)
 }
 
-//CREATE
+// CREATE
 func (balanceUsecase balanceUsecase) CreateBalanceForPublic(request request.BalanceRequest) {
 	balances := balanceUsecase.BalanceRepository.CreateBalanceForPublic(request)
 	fmt.Println(balances)
@@ -65,7 +58,7 @@ func (balanceUsecase balanceUsecase) CreateBalanceForPrivate(request request.Bal
 	fmt.Println(balances)
 }
 
-//UPDATE
+// UPDATE
 func (balanceUsecase balanceUsecase) UpdateBalanceForPublic(request request.BalanceRequest) {
 	balances := balanceUsecase.BalanceRepository.UpdateBalanceForPublic(request)
 	fmt.Println(balances)
@@ -81,7 +74,7 @@ func (balanceUsecase balanceUsecase) UpdateBalanceForPrivate(request request.Bal
 	fmt.Println(balances)
 }
 
-//DELETE
+// DELETE
 func (balanceUsecase balanceUsecase) DeleteBalanceForPublic(request request.BalanceRequest) {
 	balances := balanceUsecase.BalanceRepository.DeleteBalanceForPublic(request)
 	fmt.Println(balances)
@@ -98,5 +91,5 @@ func (balanceUsecase balanceUsecase) DeleteBalanceForPrivate(request request.Bal
 }
 
 func NewBalanceUsecase(balanceRepository repository.BalanceRepository) BalanceUsecase {
-	return &balanceUsecase{ BalanceRepository: balanceRepository}
+	return &balanceUsecase{BalanceRepository: balanceRepository}
 }

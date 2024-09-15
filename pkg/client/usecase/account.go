@@ -24,16 +24,16 @@ type AccountUsecase interface {
 }
 
 type accountUsecase struct {
-	AccountRepository   repository.AccountRepository
+	AccountRepository repository.AccountRepository
 }
 
-//Bootstrap
+// Bootstrap
 func (accountUsecase accountUsecase) BootstrapAccountForDB(request request.AccountRequest) {
 	accounts := accountUsecase.AccountRepository.BootstrapAccountForDB(request)
 	fmt.Println(accounts)
 }
 
-//GET
+// GET
 func (accountUsecase accountUsecase) GetAccountForPublic(request request.AccountRequest) {
 	accounts := accountUsecase.AccountRepository.GetAccountForPublic(request)
 	fmt.Println(accounts)
@@ -49,7 +49,7 @@ func (accountUsecase accountUsecase) GetAccountForPrivate(request request.Accoun
 	fmt.Println(accounts)
 }
 
-//CREATE
+// CREATE
 func (accountUsecase accountUsecase) CreateAccountForPublic(request request.AccountRequest) {
 	accounts := accountUsecase.AccountRepository.CreateAccountForPublic(request)
 	fmt.Println(accounts)
@@ -65,7 +65,7 @@ func (accountUsecase accountUsecase) CreateAccountForPrivate(request request.Acc
 	fmt.Println(accounts)
 }
 
-//UPDATE
+// UPDATE
 func (accountUsecase accountUsecase) UpdateAccountForPublic(request request.AccountRequest) {
 	accounts := accountUsecase.AccountRepository.UpdateAccountForPublic(request)
 	fmt.Println(accounts)
@@ -81,7 +81,7 @@ func (accountUsecase accountUsecase) UpdateAccountForPrivate(request request.Acc
 	fmt.Println(accounts)
 }
 
-//DELETE
+// DELETE
 func (accountUsecase accountUsecase) DeleteAccountForPublic(request request.AccountRequest) {
 	accounts := accountUsecase.AccountRepository.DeleteAccountForPublic(request)
 	fmt.Println(accounts)
@@ -98,5 +98,5 @@ func (accountUsecase accountUsecase) DeleteAccountForPrivate(request request.Acc
 }
 
 func NewAccountUsecase(accountRepository repository.AccountRepository) AccountUsecase {
-	return &accountUsecase{ AccountRepository: accountRepository}
+	return &accountUsecase{AccountRepository: accountRepository}
 }

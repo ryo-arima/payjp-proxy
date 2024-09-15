@@ -24,16 +24,16 @@ type ChargeUsecase interface {
 }
 
 type chargeUsecase struct {
-	ChargeRepository   repository.ChargeRepository
+	ChargeRepository repository.ChargeRepository
 }
 
-//Bootstrap
+// Bootstrap
 func (chargeUsecase chargeUsecase) BootstrapChargeForDB(request request.ChargeRequest) {
 	charges := chargeUsecase.ChargeRepository.BootstrapChargeForDB(request)
 	fmt.Println(charges)
 }
 
-//GET
+// GET
 func (chargeUsecase chargeUsecase) GetChargeForPublic(request request.ChargeRequest) {
 	charges := chargeUsecase.ChargeRepository.GetChargeForPublic(request)
 	fmt.Println(charges)
@@ -49,7 +49,7 @@ func (chargeUsecase chargeUsecase) GetChargeForPrivate(request request.ChargeReq
 	fmt.Println(charges)
 }
 
-//CREATE
+// CREATE
 func (chargeUsecase chargeUsecase) CreateChargeForPublic(request request.ChargeRequest) {
 	charges := chargeUsecase.ChargeRepository.CreateChargeForPublic(request)
 	fmt.Println(charges)
@@ -65,7 +65,7 @@ func (chargeUsecase chargeUsecase) CreateChargeForPrivate(request request.Charge
 	fmt.Println(charges)
 }
 
-//UPDATE
+// UPDATE
 func (chargeUsecase chargeUsecase) UpdateChargeForPublic(request request.ChargeRequest) {
 	charges := chargeUsecase.ChargeRepository.UpdateChargeForPublic(request)
 	fmt.Println(charges)
@@ -81,7 +81,7 @@ func (chargeUsecase chargeUsecase) UpdateChargeForPrivate(request request.Charge
 	fmt.Println(charges)
 }
 
-//DELETE
+// DELETE
 func (chargeUsecase chargeUsecase) DeleteChargeForPublic(request request.ChargeRequest) {
 	charges := chargeUsecase.ChargeRepository.DeleteChargeForPublic(request)
 	fmt.Println(charges)
@@ -98,5 +98,5 @@ func (chargeUsecase chargeUsecase) DeleteChargeForPrivate(request request.Charge
 }
 
 func NewChargeUsecase(chargeRepository repository.ChargeRepository) ChargeUsecase {
-	return &chargeUsecase{ ChargeRepository: chargeRepository}
+	return &chargeUsecase{ChargeRepository: chargeRepository}
 }

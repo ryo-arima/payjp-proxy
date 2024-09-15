@@ -1,9 +1,17 @@
 package config
 
-type PayJpConfig struct {
-	Payjp string `yaml:"Payjp"`
+import (
+	"github.com/payjp/payjp-go/v1"
+)
+
+type PayjpConfig struct {
+	Service *payjp.Service
 }
 
-type Payjp struct {
-	Secret string `yaml:"secret"`
+func NewPayjpConfig(conf YamlConfig) (*PayjpConfig, error) {
+	secret := conf.Payjp.Secret
+	service := payjp.New(secret, nil)
+	return &PayjpConfig{
+		Service: service,
+	}, nil
 }

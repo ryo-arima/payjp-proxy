@@ -24,16 +24,16 @@ type CommonUsecase interface {
 }
 
 type commonUsecase struct {
-	CommonRepository   repository.CommonRepository
+	CommonRepository repository.CommonRepository
 }
 
-//Bootstrap
+// Bootstrap
 func (commonUsecase commonUsecase) BootstrapCommonForDB(request request.CommonRequest) {
 	commons := commonUsecase.CommonRepository.BootstrapCommonForDB(request)
 	fmt.Println(commons)
 }
 
-//GET
+// GET
 func (commonUsecase commonUsecase) GetCommonForPublic(request request.CommonRequest) {
 	commons := commonUsecase.CommonRepository.GetCommonForPublic(request)
 	fmt.Println(commons)
@@ -49,7 +49,7 @@ func (commonUsecase commonUsecase) GetCommonForPrivate(request request.CommonReq
 	fmt.Println(commons)
 }
 
-//CREATE
+// CREATE
 func (commonUsecase commonUsecase) CreateCommonForPublic(request request.CommonRequest) {
 	commons := commonUsecase.CommonRepository.CreateCommonForPublic(request)
 	fmt.Println(commons)
@@ -65,7 +65,7 @@ func (commonUsecase commonUsecase) CreateCommonForPrivate(request request.Common
 	fmt.Println(commons)
 }
 
-//UPDATE
+// UPDATE
 func (commonUsecase commonUsecase) UpdateCommonForPublic(request request.CommonRequest) {
 	commons := commonUsecase.CommonRepository.UpdateCommonForPublic(request)
 	fmt.Println(commons)
@@ -81,7 +81,7 @@ func (commonUsecase commonUsecase) UpdateCommonForPrivate(request request.Common
 	fmt.Println(commons)
 }
 
-//DELETE
+// DELETE
 func (commonUsecase commonUsecase) DeleteCommonForPublic(request request.CommonRequest) {
 	commons := commonUsecase.CommonRepository.DeleteCommonForPublic(request)
 	fmt.Println(commons)
@@ -98,5 +98,5 @@ func (commonUsecase commonUsecase) DeleteCommonForPrivate(request request.Common
 }
 
 func NewCommonUsecase(commonRepository repository.CommonRepository) CommonUsecase {
-	return &commonUsecase{ CommonRepository: commonRepository}
+	return &commonUsecase{CommonRepository: commonRepository}
 }

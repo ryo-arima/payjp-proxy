@@ -65,11 +65,6 @@ func InitRouter(conf config.BaseConfig) *gin.Engine {
 	productControllerForInternal := controller.NewProductControllerForInternal(productRepository)
 	productControllerForPrivate := controller.NewProductControllerForPrivate(productRepository)
 
-	accountRepository := repository.NewAccountRepository(conf)
-	accountControllerForPublic := controller.NewAccountControllerForPublic(accountRepository)
-	accountControllerForInternal := controller.NewAccountControllerForInternal(accountRepository)
-	accountControllerForPrivate := controller.NewAccountControllerForPrivate(accountRepository)
-
 	router := gin.Default()
 	privateAPI := router.Group("api/private")
 	internalAPI := router.Group("api/internal")
@@ -193,17 +188,6 @@ func InitRouter(conf config.BaseConfig) *gin.Engine {
 	privateAPI.POST("/product", productControllerForPrivate.CreateProduct)
 	privateAPI.PUT("/product", productControllerForPrivate.UpdateProduct)
 	privateAPI.DELETE("/product", productControllerForPrivate.DeleteProduct)
-
-	//account
-	publicAPI.GET("/accounts", accountControllerForPublic.GetAccounts)
-	internalAPI.GET("/accounts", accountControllerForInternal.GetAccounts)
-	internalAPI.POST("/account", accountControllerForInternal.CreateAccount)
-	internalAPI.PUT("/account", accountControllerForInternal.UpdateAccount)
-	internalAPI.DELETE("/account", accountControllerForInternal.DeleteAccount)
-	privateAPI.GET("/accounts", accountControllerForPrivate.GetAccounts)
-	privateAPI.POST("/account", accountControllerForPrivate.CreateAccount)
-	privateAPI.PUT("/account", accountControllerForPrivate.UpdateAccount)
-	privateAPI.DELETE("/account", accountControllerForPrivate.DeleteAccount)
 
 	return router
 }

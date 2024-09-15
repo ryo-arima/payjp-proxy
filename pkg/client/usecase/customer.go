@@ -12,13 +12,10 @@ type CustomerUsecase interface {
 	GetCustomerForPublic(request request.CustomerRequest)
 	GetCustomerForInternal(request request.CustomerRequest)
 	GetCustomerForPrivate(request request.CustomerRequest)
-	CreateCustomerForPublic(request request.CustomerRequest)
 	CreateCustomerForInternal(request request.CustomerRequest)
 	CreateCustomerForPrivate(request request.CustomerRequest)
-	UpdateCustomerForPublic(request request.CustomerRequest)
 	UpdateCustomerForInternal(request request.CustomerRequest)
 	UpdateCustomerForPrivate(request request.CustomerRequest)
-	DeleteCustomerForPublic(request request.CustomerRequest)
 	DeleteCustomerForInternal(request request.CustomerRequest)
 	DeleteCustomerForPrivate(request request.CustomerRequest)
 }
@@ -50,11 +47,6 @@ func (customerUsecase customerUsecase) GetCustomerForPrivate(request request.Cus
 }
 
 // CREATE
-func (customerUsecase customerUsecase) CreateCustomerForPublic(request request.CustomerRequest) {
-	customers := customerUsecase.CustomerRepository.CreateCustomerForPublic(request)
-	fmt.Println(customers)
-}
-
 func (customerUsecase customerUsecase) CreateCustomerForInternal(request request.CustomerRequest) {
 	customers := customerUsecase.CustomerRepository.CreateCustomerForInternal(request)
 	fmt.Println(customers)
@@ -66,11 +58,6 @@ func (customerUsecase customerUsecase) CreateCustomerForPrivate(request request.
 }
 
 // UPDATE
-func (customerUsecase customerUsecase) UpdateCustomerForPublic(request request.CustomerRequest) {
-	customers := customerUsecase.CustomerRepository.UpdateCustomerForPublic(request)
-	fmt.Println(customers)
-}
-
 func (customerUsecase customerUsecase) UpdateCustomerForInternal(request request.CustomerRequest) {
 	customers := customerUsecase.CustomerRepository.UpdateCustomerForInternal(request)
 	fmt.Println(customers)
@@ -82,11 +69,6 @@ func (customerUsecase customerUsecase) UpdateCustomerForPrivate(request request.
 }
 
 // DELETE
-func (customerUsecase customerUsecase) DeleteCustomerForPublic(request request.CustomerRequest) {
-	customers := customerUsecase.CustomerRepository.DeleteCustomerForPublic(request)
-	fmt.Println(customers)
-}
-
 func (customerUsecase customerUsecase) DeleteCustomerForInternal(request request.CustomerRequest) {
 	customers := customerUsecase.CustomerRepository.DeleteCustomerForInternal(request)
 	fmt.Println(customers)

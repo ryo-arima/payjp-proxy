@@ -16,17 +16,14 @@ func InitRouter(conf config.BaseConfig) *gin.Engine {
 	commonControllerForPrivate := controller.NewCommonControllerForPrivate(commonRepository)
 
 	eventRepository := repository.NewEventRepository(conf)
-	eventControllerForPublic := controller.NewEventControllerForPublic(eventRepository)
 	eventControllerForInternal := controller.NewEventControllerForInternal(eventRepository)
 	eventControllerForPrivate := controller.NewEventControllerForPrivate(eventRepository)
 
 	chargeRepository := repository.NewChargeRepository(conf)
-	chargeControllerForPublic := controller.NewChargeControllerForPublic(chargeRepository)
 	chargeControllerForInternal := controller.NewChargeControllerForInternal(chargeRepository)
 	chargeControllerForPrivate := controller.NewChargeControllerForPrivate(chargeRepository)
 
 	customerRepository := repository.NewCustomerRepository(conf)
-	customerControllerForPublic := controller.NewCustomerControllerForPublic(customerRepository)
 	customerControllerForInternal := controller.NewCustomerControllerForInternal(customerRepository)
 	customerControllerForPrivate := controller.NewCustomerControllerForPrivate(customerRepository)
 
@@ -36,7 +33,6 @@ func InitRouter(conf config.BaseConfig) *gin.Engine {
 	planControllerForPrivate := controller.NewPlanControllerForPrivate(planRepository)
 
 	statementRepository := repository.NewStatementRepository(conf)
-	statementControllerForPublic := controller.NewStatementControllerForPublic(statementRepository)
 	statementControllerForInternal := controller.NewStatementControllerForInternal(statementRepository)
 	statementControllerForPrivate := controller.NewStatementControllerForPrivate(statementRepository)
 
@@ -46,12 +42,10 @@ func InitRouter(conf config.BaseConfig) *gin.Engine {
 	subscriptionControllerForPrivate := controller.NewSubscriptionControllerForPrivate(subscriptionRepository)
 
 	termRepository := repository.NewTermRepository(conf)
-	termControllerForPublic := controller.NewTermControllerForPublic(termRepository)
 	termControllerForInternal := controller.NewTermControllerForInternal(termRepository)
 	termControllerForPrivate := controller.NewTermControllerForPrivate(termRepository)
 
 	balanceRepository := repository.NewBalanceRepository(conf)
-	balanceControllerForPublic := controller.NewBalanceControllerForPublic(balanceRepository)
 	balanceControllerForInternal := controller.NewBalanceControllerForInternal(balanceRepository)
 	balanceControllerForPrivate := controller.NewBalanceControllerForPrivate(balanceRepository)
 
@@ -70,7 +64,6 @@ func InitRouter(conf config.BaseConfig) *gin.Engine {
 	privateAPI.GET("/commons", commonControllerForPrivate.GetCommons)
 
 	//event
-	publicAPI.GET("/events", eventControllerForPublic.GetEvents)
 	internalAPI.GET("/events", eventControllerForInternal.GetEvents)
 	//internalAPI.POST("/event", eventControllerForInternal.CreateEvent)
 	//internalAPI.PUT("/event", eventControllerForInternal.UpdateEvent)
@@ -81,7 +74,6 @@ func InitRouter(conf config.BaseConfig) *gin.Engine {
 	//privateAPI.DELETE("/event", eventControllerForPrivate.DeleteEvent)
 
 	//charge
-	publicAPI.GET("/charges", chargeControllerForPublic.GetCharges)
 	internalAPI.GET("/charges", chargeControllerForInternal.GetCharges)
 	internalAPI.POST("/charge", chargeControllerForInternal.CreateCharge)
 	internalAPI.PUT("/charge", chargeControllerForInternal.UpdateCharge)
@@ -92,7 +84,6 @@ func InitRouter(conf config.BaseConfig) *gin.Engine {
 	privateAPI.DELETE("/charge", chargeControllerForPrivate.DeleteCharge)
 
 	//customer
-	publicAPI.GET("/customers", customerControllerForPublic.GetCustomers)
 	internalAPI.GET("/customers", customerControllerForInternal.GetCustomers)
 	internalAPI.POST("/customer", customerControllerForInternal.CreateCustomer)
 	internalAPI.PUT("/customer", customerControllerForInternal.UpdateCustomer)
@@ -114,7 +105,6 @@ func InitRouter(conf config.BaseConfig) *gin.Engine {
 	privateAPI.DELETE("/plan", planControllerForPrivate.DeletePlan)
 
 	//statement
-	publicAPI.GET("/statements", statementControllerForPublic.GetStatements)
 	internalAPI.GET("/statements", statementControllerForInternal.GetStatements)
 	internalAPI.POST("/statement", statementControllerForInternal.CreateStatement)
 	internalAPI.PUT("/statement", statementControllerForInternal.UpdateStatement)
@@ -136,7 +126,6 @@ func InitRouter(conf config.BaseConfig) *gin.Engine {
 	privateAPI.DELETE("/subscription", subscriptionControllerForPrivate.DeleteSubscription)
 
 	//term
-	publicAPI.GET("/terms", termControllerForPublic.GetTerms)
 	internalAPI.GET("/terms", termControllerForInternal.GetTerms)
 	internalAPI.POST("/term", termControllerForInternal.CreateTerm)
 	internalAPI.PUT("/term", termControllerForInternal.UpdateTerm)
@@ -147,7 +136,6 @@ func InitRouter(conf config.BaseConfig) *gin.Engine {
 	privateAPI.DELETE("/term", termControllerForPrivate.DeleteTerm)
 
 	//balance
-	publicAPI.GET("/balances", balanceControllerForPublic.GetBalances)
 	internalAPI.GET("/balances", balanceControllerForInternal.GetBalances)
 	internalAPI.POST("/balance", balanceControllerForInternal.CreateBalance)
 	internalAPI.PUT("/balance", balanceControllerForInternal.UpdateBalance)

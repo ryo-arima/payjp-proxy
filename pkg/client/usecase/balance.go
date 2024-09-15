@@ -8,16 +8,12 @@ import (
 )
 
 type BalanceUsecase interface {
-	GetBalanceForPublic(request request.BalanceRequest)
 	GetBalanceForInternal(request request.BalanceRequest)
 	GetBalanceForPrivate(request request.BalanceRequest)
-	CreateBalanceForPublic(request request.BalanceRequest)
 	CreateBalanceForInternal(request request.BalanceRequest)
 	CreateBalanceForPrivate(request request.BalanceRequest)
-	UpdateBalanceForPublic(request request.BalanceRequest)
 	UpdateBalanceForInternal(request request.BalanceRequest)
 	UpdateBalanceForPrivate(request request.BalanceRequest)
-	DeleteBalanceForPublic(request request.BalanceRequest)
 	DeleteBalanceForInternal(request request.BalanceRequest)
 	DeleteBalanceForPrivate(request request.BalanceRequest)
 }
@@ -27,11 +23,6 @@ type balanceUsecase struct {
 }
 
 // GET
-func (balanceUsecase balanceUsecase) GetBalanceForPublic(request request.BalanceRequest) {
-	balances := balanceUsecase.BalanceRepository.GetBalanceForPublic(request)
-	fmt.Println(balances)
-}
-
 func (balanceUsecase balanceUsecase) GetBalanceForInternal(request request.BalanceRequest) {
 	balances := balanceUsecase.BalanceRepository.GetBalanceForInternal(request)
 	fmt.Println(balances)
@@ -43,11 +34,6 @@ func (balanceUsecase balanceUsecase) GetBalanceForPrivate(request request.Balanc
 }
 
 // CREATE
-func (balanceUsecase balanceUsecase) CreateBalanceForPublic(request request.BalanceRequest) {
-	balances := balanceUsecase.BalanceRepository.CreateBalanceForPublic(request)
-	fmt.Println(balances)
-}
-
 func (balanceUsecase balanceUsecase) CreateBalanceForInternal(request request.BalanceRequest) {
 	balances := balanceUsecase.BalanceRepository.CreateBalanceForInternal(request)
 	fmt.Println(balances)
@@ -59,11 +45,6 @@ func (balanceUsecase balanceUsecase) CreateBalanceForPrivate(request request.Bal
 }
 
 // UPDATE
-func (balanceUsecase balanceUsecase) UpdateBalanceForPublic(request request.BalanceRequest) {
-	balances := balanceUsecase.BalanceRepository.UpdateBalanceForPublic(request)
-	fmt.Println(balances)
-}
-
 func (balanceUsecase balanceUsecase) UpdateBalanceForInternal(request request.BalanceRequest) {
 	balances := balanceUsecase.BalanceRepository.UpdateBalanceForInternal(request)
 	fmt.Println(balances)
@@ -75,11 +56,6 @@ func (balanceUsecase balanceUsecase) UpdateBalanceForPrivate(request request.Bal
 }
 
 // DELETE
-func (balanceUsecase balanceUsecase) DeleteBalanceForPublic(request request.BalanceRequest) {
-	balances := balanceUsecase.BalanceRepository.DeleteBalanceForPublic(request)
-	fmt.Println(balances)
-}
-
 func (balanceUsecase balanceUsecase) DeleteBalanceForInternal(request request.BalanceRequest) {
 	balances := balanceUsecase.BalanceRepository.DeleteBalanceForInternal(request)
 	fmt.Println(balances)

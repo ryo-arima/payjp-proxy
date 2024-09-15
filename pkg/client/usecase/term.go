@@ -9,36 +9,27 @@ import (
 
 type TermUsecase interface {
 	BootstrapTermForDB(request request.TermRequest)
-	GetTermForPublic(request request.TermRequest)
 	GetTermForInternal(request request.TermRequest)
 	GetTermForPrivate(request request.TermRequest)
-	CreateTermForPublic(request request.TermRequest)
 	CreateTermForInternal(request request.TermRequest)
 	CreateTermForPrivate(request request.TermRequest)
-	UpdateTermForPublic(request request.TermRequest)
 	UpdateTermForInternal(request request.TermRequest)
 	UpdateTermForPrivate(request request.TermRequest)
-	DeleteTermForPublic(request request.TermRequest)
 	DeleteTermForInternal(request request.TermRequest)
 	DeleteTermForPrivate(request request.TermRequest)
 }
 
 type termUsecase struct {
-	TermRepository   repository.TermRepository
+	TermRepository repository.TermRepository
 }
 
-//Bootstrap
+// Bootstrap
 func (termUsecase termUsecase) BootstrapTermForDB(request request.TermRequest) {
 	terms := termUsecase.TermRepository.BootstrapTermForDB(request)
 	fmt.Println(terms)
 }
 
-//GET
-func (termUsecase termUsecase) GetTermForPublic(request request.TermRequest) {
-	terms := termUsecase.TermRepository.GetTermForPublic(request)
-	fmt.Println(terms)
-}
-
+// GET
 func (termUsecase termUsecase) GetTermForInternal(request request.TermRequest) {
 	terms := termUsecase.TermRepository.GetTermForInternal(request)
 	fmt.Println(terms)
@@ -49,11 +40,7 @@ func (termUsecase termUsecase) GetTermForPrivate(request request.TermRequest) {
 	fmt.Println(terms)
 }
 
-//CREATE
-func (termUsecase termUsecase) CreateTermForPublic(request request.TermRequest) {
-	terms := termUsecase.TermRepository.CreateTermForPublic(request)
-	fmt.Println(terms)
-}
+// CREATE
 
 func (termUsecase termUsecase) CreateTermForInternal(request request.TermRequest) {
 	terms := termUsecase.TermRepository.CreateTermForInternal(request)
@@ -66,10 +53,6 @@ func (termUsecase termUsecase) CreateTermForPrivate(request request.TermRequest)
 }
 
 //UPDATE
-func (termUsecase termUsecase) UpdateTermForPublic(request request.TermRequest) {
-	terms := termUsecase.TermRepository.UpdateTermForPublic(request)
-	fmt.Println(terms)
-}
 
 func (termUsecase termUsecase) UpdateTermForInternal(request request.TermRequest) {
 	terms := termUsecase.TermRepository.UpdateTermForInternal(request)
@@ -82,10 +65,6 @@ func (termUsecase termUsecase) UpdateTermForPrivate(request request.TermRequest)
 }
 
 //DELETE
-func (termUsecase termUsecase) DeleteTermForPublic(request request.TermRequest) {
-	terms := termUsecase.TermRepository.DeleteTermForPublic(request)
-	fmt.Println(terms)
-}
 
 func (termUsecase termUsecase) DeleteTermForInternal(request request.TermRequest) {
 	terms := termUsecase.TermRepository.DeleteTermForInternal(request)
@@ -98,5 +77,5 @@ func (termUsecase termUsecase) DeleteTermForPrivate(request request.TermRequest)
 }
 
 func NewTermUsecase(termRepository repository.TermRepository) TermUsecase {
-	return &termUsecase{ TermRepository: termRepository}
+	return &termUsecase{TermRepository: termRepository}
 }
